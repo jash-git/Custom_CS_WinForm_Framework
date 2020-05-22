@@ -1,0 +1,47 @@
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SetCPUCardParameter.exe
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SetCPUCardParameter.pdb
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.csprojResolveAssemblyReference.cache
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.Properties.Resources.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.csproj.GenerateResource.Cache
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.exe
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.pdb
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SetCPUCardParameter.exe.config
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.MainForm.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SQLite.dll
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SQLite.NET.dll
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200521\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SQLite3.dll
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SetCPUCardParameter.exe.config
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.exe
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.pdb
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SQLite.dll
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SQLite.NET.dll
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SQLite3.dll
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SetCPUCardParameter.exe
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\bin\Debug\SetCPUCardParameter.pdb
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.csprojResolveAssemblyReference.cache
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.MainForm.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.Properties.Resources.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.csproj.GenerateResource.Cache
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.UI_Lib.ckbtext.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.UI_Lib.editpassword.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.UI_Lib.Grp_ckbtext.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.UI_Lib.SetTimeEnable.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.UI_Lib.SetTimeEnable2.resources
+C:\Users\jashliao\Desktop\192_168_1_68 API\20200522\SYWEB-V8-Workstation(Delta)\SetCPUCardParameter\obj\Debug\SetCPUCardParameter.UI_Lib.SetTimeEnable3.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\bin\Debug\SQLite.dll
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\bin\Debug\SQLite.NET.dll
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\bin\Debug\SQLite3.dll
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\bin\Debug\SetCPUCardParameter.exe.config
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\bin\Debug\SetCPUCardParameter.exe
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\bin\Debug\SetCPUCardParameter.pdb
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.MainForm.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.Properties.Resources.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.UI_Lib.ckbtext.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.UI_Lib.editpassword.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.UI_Lib.Grp_ckbtext.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.UI_Lib.SetTimeEnable.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.UI_Lib.SetTimeEnable2.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.UI_Lib.SetTimeEnable3.resources
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.csproj.GenerateResource.Cache
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.exe
+C:\Users\jashliao\Desktop\Custom_CS_WinForm_Framework\code\obj\Debug\SetCPUCardParameter.pdb

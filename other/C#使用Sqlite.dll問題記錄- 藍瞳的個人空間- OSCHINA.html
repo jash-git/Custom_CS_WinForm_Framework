@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://my.oschina.net/u/868789/blog/1811984 -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="referrer" content="always">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA</title>
+            <meta name="keywords" content="C#,sqlite,蓝瞳,,C#使用Sqlite.dll问题记录 - 蓝瞳的个人空间,OSCHINA博客">
+                <meta name="description" content="## 2018年5月14日 ### C#添加 Sqlite.dll 引用 1. 使用nuget，操作最为简单，同时支持32位和64位系统，推荐。缺点是多了 ef、linq等dll文件。 1. 手动添加 sqlite.dll。缺点配置繁琐；优点，只需要 `SQLite.Interop.dll` 和 `System.Data.SQLite.dll` 两个文件 这里只介绍第二种方法，步骤如下： 1. 官网 [wiki](http://...">
+        <link rel="stylesheet" type="text/css" href="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/semantic.min.css">
+                <link type="text/css" rel="stylesheet" href="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/space.d8ac2c1b.css">        <script charset="utf-8" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/UrlChangeTracker.js.下載"></script><script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/hm.js.下載"></script><script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/push.js.下載"></script><script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/osd.js.下載"></script><script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/f(4).txt"></script><script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/f(5).txt" id="google_shimpl"></script><script type="text/javascript">window.__STATIC_DOMAIN = "https://static.oschina.net";</script>
+    <script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/jquery.min.js.下載"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.oschina.net/new-osc/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="最新開源項目" href="https://www.oschina.net/project/rss">
+    <link rel="alternate" type="application/rss+xml" title="最新開源資訊" href="https://www.oschina.net/news/rss">
+    <link rel="alternate" type="application/rss+xml" title="最新問題列表" href="https://www.oschina.net/question/rss">
+    <link rel="alternate" type="application/rss+xml" title="最新翻譯列表" href="https://www.oschina.net/translate/rss">
+    <link rel="alternate" type="application/rss+xml" title="最新博客列表" href="https://www.oschina.net/blog/rss">
+    <link rel="alternate" type="application/rss+xml" title="推薦博客列表" href="https://www.oschina.net/blog/rss?show=more">
+    <link rel="alternate" type="application/rss+xml" title="推薦軟件列表" href="https://www.oschina.net/project/rss?show=recomms">
+    <link rel="alternate" type="application/rss+xml" title="最新代碼分享列表" href="https://www.oschina.net/code/rss">
+    <link rel="alternate" type="application/rss+xml" title="OSCHINA - 源碼列表" href="https://www.oschina.net/code/source_rss">
+                    <link rel="preload" href="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/f(6).txt" as="script"><script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/f(6).txt"></script><link rel="preload" href="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/f(7).txt" as="script"><script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/f(7).txt"></script><script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/radarChart.js.下載"></script><script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/vue.min.js.下載"></script><script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/vue.min.js.下載"></script><script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/jquery.caret.min.js.下載"></script><script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/jquery.atwho.min.js.下載"></script><link type="text/css" rel="stylesheet" charset="UTF-8" href="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/translateelement.css"></head>
+<body class="pushable dimmable"><svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;"><symbol id="oicon-switch" viewBox="0 0 1024 1024"><path d="M924.379429 145.700571L709.632 1.536a9.142857 9.142857 0 0 0-14.189714 7.753143V102.4H366.006857C163.913143 102.4 0 267.483429 0 471.04V544.914286c0 52.882286 11.117714 103.277714 31.012571 148.626285a9.216 9.216 0 0 0 13.458286 4.022858L153.6 624.274286a9.362286 9.362286 0 0 0 3.657143-10.605715 223.085714 223.085714 0 0 1-10.752-68.754285V471.04c0-59.099429 22.893714-114.614857 64.365714-156.525714a217.307429 217.307429 0 0 1 155.136-64.731429h329.435429v93.696c0 7.387429 8.192 11.776 14.189714 7.753143l214.601143-144.164571c21.869714-14.628571 21.869714-46.811429 0.146286-61.44zM99.766857 878.299429l214.601143 144.164571a9.142857 9.142857 0 0 0 14.189714-7.753143V921.6h329.435429C860.086857 921.6 1024 756.516571 1024 552.96V479.085714c0-52.882286-11.117714-103.277714-31.012571-148.626285a9.216 9.216 0 0 0-13.458286-4.022858l-108.982857 73.289143a9.362286 9.362286 0 0 0-3.657143 10.605715c7.021714 21.869714 10.678857 45.056 10.678857 68.754285V552.96c0 59.099429-22.893714 114.614857-64.292571 156.525714a217.234286 217.234286 0 0 1-155.282286 64.731429H328.557714V680.448c0-7.387429-8.192-11.776-14.189714-7.753143l-214.601143 144.164572a37.229714 37.229714 0 0 0 0 61.44z"></path></symbol><symbol id="oicon-org" viewBox="0 0 1024 1024"><path d="M456.96 22.656a78.016 78.016 0 0 1 110.08 0l100.48 100.544h155.52c42.88 0.128 77.632 34.88 77.76 77.76v155.52l100.48 100.544a78.016 78.016 0 0 1 0 109.952l-100.48 100.48v155.52a78.016 78.016 0 0 1-77.76 77.824h-155.52l-100.48 100.48a78.016 78.016 0 0 1-110.016 0l-100.48-100.48H200.96a78.016 78.016 0 0 1-77.824-77.76v-155.52L22.72 567.04a78.016 78.016 0 0 1 0-110.016l100.48-100.48V200.96A78.016 78.016 0 0 1 200.96 123.136h155.52z m235.904 375.104c-16.64-18.368-38.976-18.368-55.68 0L459.2 593.792l-72.32-79.68c-16.704-18.368-39.04-18.368-55.68 0A49.28 49.28 0 0 0 320 544.768a49.28 49.28 0 0 0 11.136 30.592l100.16 116.416c5.568 6.08 16.704 12.224 27.84 12.224a40.576 40.576 0 0 0 27.84-12.224l205.888-226.624C704 459.008 704 446.72 704 428.416a49.28 49.28 0 0 0-11.136-30.656z"></path></symbol><symbol id="oicon-gitee-circle" viewBox="0 0 1024 1024"><path d="M512 0a512 512 0 1 1 0 1024A512 512 0 0 1 512 0z m259.145143 227.547429h-354.011429a189.659429 189.659429 0 0 0-189.586285 189.659428v354.011429c0 13.897143 11.337143 25.234286 25.307428 25.234285h372.955429a170.642286 170.642286 0 0 0 170.642285-170.642285V480.402286a25.307429 25.307429 0 0 0-25.307428-25.307429H480.402286a25.307429 25.307429 0 0 0-25.307429 25.307429v63.195428c0 12.214857 8.630857 22.454857 20.187429 24.795429l5.12 0.512h177.005714c12.214857 0 22.381714 8.630857 24.722286 20.187428l0.512 5.12v12.580572c0 41.910857-33.938286 75.849143-75.849143 75.849143H366.592a25.307429 25.307429 0 0 1-25.307429-25.234286V417.206857c0-39.131429 29.622857-71.314286 67.584-75.410286l8.265143-0.438857h354.011429c13.897143 0 25.234286-11.337143 25.234286-25.307428v-63.195429a25.307429 25.307429 0 0 0-20.114286-24.795428l-5.12-0.512z"></path></symbol><symbol id="oicon-ask" viewBox="0 0 1024 1024"><path d="M146.295156 1024v-232.727273H73.079156A73.774545 73.774545 0 0 1 0.002793 716.986182V74.193455C0.002793 33.28 32.817338 0 73.125702 0H950.926429C991.188247 0 1024.002793 33.28 1024.002793 74.193455v642.839272c0 40.96-32.814545 74.193455-73.122909 74.193455H375.810793L146.295156 1024zM73.079156 49.431273a24.576 24.576 0 0 0-24.343272 24.762182v642.839272c0 13.684364 10.891636 24.762182 24.343272 24.762182h121.949091v162.816l160.581818-162.816h595.223273a24.529455 24.529455 0 0 0 24.343273-24.762182V74.193455a24.576 24.576 0 0 0-24.343273-24.762182H73.079156zM292.58752 438.458182c15.080727 8.843636 33.652364 8.843636 48.733091 0 15.080727-8.843636 24.389818-25.134545 24.389818-42.821818s-9.309091-33.978182-24.389818-42.821819a48.174545 48.174545 0 0 0-48.733091 0c-15.080727 8.843636-24.389818 25.134545-24.389818 42.821819s9.309091 33.978182 24.389818 42.821818z m390.050909 0c15.127273 8.843636 33.698909 8.843636 48.779636 0 15.080727-8.843636 24.389818-25.134545 24.389819-42.821818 0-27.322182-21.829818-49.477818-48.779637-49.477819-26.903273 0-48.733091 22.155636-48.733091 49.477819 0 17.687273 9.309091 33.978182 24.389819 42.821818zM512.002793 445.067636c26.949818 0 48.779636-22.155636 48.779636-49.431272 0-27.322182-21.876364-49.477818-48.779636-49.477819-26.949818 0-48.779636 22.155636-48.779637 49.477819 0 27.275636 21.876364 49.431273 48.779637 49.431272z"></path></symbol><symbol id="oicon-write" viewBox="0 0 1024 1024"><path d="M975.073029 1023.83715H48.926971A48.764121 48.764121 0 0 1 0.16285 975.073029V48.926971C0.16285 21.985725 21.985725 0.16285 48.926971 0.16285H585.053121a24.382061 24.382061 0 0 1 0 48.764121h-511.837151a24.382061 24.382061 0 0 0-24.33553 24.33553V950.78403c0 13.447358 10.888172 24.33553 24.33553 24.33553h877.56806a24.33553 24.33553 0 0 0 24.33553-24.33553v-511.837151a24.382061 24.382061 0 0 1 48.764121 0v536.172681c0 26.941246-21.822875 48.764121-48.764121 48.764121z m-487.362028-292.491666H316.338617a24.102877 24.102877 0 0 1-23.963285-24.195938c0-0.465307 0.279184-0.884082 0.279184-1.349389V535.730632c0-4.28082 0.186123-12.19103 0.465306-23.730632L790.346348 14.773474a48.764121 48.764121 0 0 1 68.911893 0l137.870316 137.870316a48.764121 48.764121 0 0 1 0 68.958423L487.711001 731.345484z m457.768535-561.624945L842.088431 66.236373a24.382061 24.382061 0 0 0-34.432681 0L340.534555 533.357568a19.496342 19.496342 0 0 1 0.465306 2.419594v147.222977h125.725817l478.800388-478.800389a24.382061 24.382061 0 0 0 0-34.525742h-0.093061z"></path></symbol><symbol id="oicon-plus" viewBox="0 0 1024 1024"><path d="M1024 426.666667H597.333333V0H426.666667v426.666667H0v170.666666h426.666667v426.666667h170.666666V597.333333h426.666667z"></path></symbol><symbol id="oicon-write_bak" viewBox="0 0 1024 1024"><path d="M975.234437 1023.9744H48.765563A48.739963 48.739963 0 0 1 0.0256 975.234437V48.765563C0.0256 21.835709 21.835709 0.0256 48.765563 0.0256H585.212339a24.369981 24.369981 0 1 1 0 48.739963h-511.9744a24.369981 24.369981 0 0 0-24.421179 24.421179V950.762061c0 13.464927 10.956252 24.421179 24.421179 24.421179h877.524122a24.369981 24.369981 0 0 0 24.421179-24.421179v-511.9744a24.369981 24.369981 0 0 1 48.739963 0v536.395579a48.739963 48.739963 0 0 1-48.739963 48.739963z m-463.592819-316.912154v0.102395a24.062797 24.062797 0 0 1-23.909205 24.216389H316.272187a24.062797 24.062797 0 0 1-23.909205-24.216389c0-0.460777 0.20479-0.819159 0.255988-1.279936v-170.129093c0-6.450877 2.662267-12.59457 7.321234-17.099945L293.079747 512 790.411679 14.668068a48.739963 48.739963 0 0 1 68.962951 0l137.925904 137.925903a48.739963 48.739963 0 0 1 0 68.962952L511.641618 707.062246zM945.642317 169.591521l-103.470026-103.418829a24.369981 24.369981 0 0 0-34.455878 0L340.488576 533.298135a19.455027 19.455027 0 0 1 0.511974 2.457477v147.243838h125.689716l478.952051-478.952052a24.369981 24.369981 0 0 0 0-34.558272h-0.051198z"></path></symbol><symbol id="oicon-ask_bak" viewBox="0 0 1186 1024"><path d="M154.565371 1009.712762V780.190476H81.422514C41.096419 780.190476 8.279657 747.373714 8.279657 707.047619v-633.904762C8.279657 32.816762 41.096419 0 81.422514 0h1024c40.326095 0 73.142857 32.816762 73.142857 73.142857v633.904762c0 40.326095-32.816762 73.142857-73.142857 73.142857H384.087657L154.565371 1009.712762zM81.422514 48.761905a24.380952 24.380952 0 0 0-24.380952 24.380952v633.904762a24.380952 24.380952 0 0 0 24.380952 24.380952H203.327276v160.572953L363.900228 731.428571H1105.422514a24.380952 24.380952 0 0 0 24.380953-24.380952v-633.904762a24.380952 24.380952 0 0 0-24.380953-24.380952h-1024zM349.61299 390.095238a48.761905 48.761905 0 1 0 97.52381 0 48.761905 48.761905 0 0 0-97.52381 0z m390.095238 0a48.761905 48.761905 0 1 0 97.52381 0 48.761905 48.761905 0 0 0-97.52381 0z m-195.047619 0a48.761905 48.761905 0 1 0 97.52381 0 48.761905 48.761905 0 0 0-97.52381 0z"></path></symbol><symbol id="oicon-trending" viewBox="0 0 1106 1024"><path d="M0 290.766798m55.308301 0l0 0q55.308301 0 55.3083 55.3083l0 608.391307q0 55.308301-55.3083 55.3083l0 0q-55.308301 0-55.308301-55.3083l0-608.391307q0-55.308301 55.308301-55.3083Z" fill="#F5A623"></path><path d="M331.849803 14.225295m55.308301 0l0 0q55.308301 0 55.308301 55.3083l0 884.93281q0 55.308301-55.308301 55.3083l0 0q-55.308301 0-55.308301-55.3083l0-884.93281q0-55.308301 55.308301-55.3083Z" fill="#F5A623" opacity=".8"></path><path d="M663.699607 401.383399m55.3083 0l0 0q55.308301 0 55.308301 55.3083l0 497.774706q0 55.308301-55.308301 55.3083l0 0q-55.308301 0-55.3083-55.3083l0-497.774706q0-55.308301 55.3083-55.3083Z" fill="#F5A623" opacity=".6"></path><path d="M995.54941 124.841896m55.308301 0l0 0q55.308301 0 55.3083 55.308301l0 774.316208q0 55.308301-55.3083 55.3083l0 0q-55.308301 0-55.308301-55.3083l0-774.316208q0-55.308301 55.308301-55.308301Z" fill="#F5A623" opacity=".4"></path></symbol><symbol id="oicon-gitee" viewBox="0 0 1024 1024"><path d="M966.524718 400.672821H456.520205c-24.497231 0-44.347077 19.954872-44.347077 44.557128v133.540102c0 24.602256 19.849846 44.530872 44.347077 44.530872h288.295385c33.266872 0 44.320821 11.132718 44.347077 44.530872 0.026256 89.035487-50.884923 133.566359-133.041231 133.566359h-376.779487c-24.602256 0-44.530872-19.954872-44.530872-44.530872v-400.67282c0-73.780513 59.575795-133.592615 133.014974-133.592616h598.593641c24.470974 0 44.320821-19.928615 44.320821-44.504615V44.530872C1010.740513 19.928615 990.916923 0 966.419692 0H367.826051C171.979487 0 13.128205 159.455179 13.128205 356.168205v623.32718C13.128205 1004.045128 32.978051 1024 57.475282 1024h598.646154c196.187897 0 352.439795-170.325333 354.619077-367.327179 0.131282-11.106462 0.131282-200.33641 0.131282-211.442872a44.478359 44.478359 0 0 0-44.347077-44.530872z"></path></symbol><symbol id="oicon-world" viewBox="0 0 1024 1024"><path d="M921.6 204.8h-1.024A510.464 510.464 0 0 0 512 0C229.696 0 0 229.696 0 512s229.696 512 512 512c167.04 0 315.072-80.64 408.576-204.8h1.024v-1.28C985.6 732.416 1024 626.816 1024 512s-38.4-220.416-102.4-305.92V204.8zM358.4 891.456A409.984 409.984 0 0 1 102.4 512c0-17.408 1.408-34.432 3.52-51.2H153.6l51.2 102.4v102.4L307.2 768l51.2 51.2v72.256zM512 921.6a408.32 408.32 0 0 1-96.448-11.904L460.8 819.2l51.2-102.4V614.4H409.6l-51.2-51.2h-51.2L256 460.8l51.2-102.4 51.2-51.2 51.2-51.2 51.2-102.4v-47.68c16.768-2.112 33.792-3.52 51.2-3.52a407.04 407.04 0 0 1 256 90.368V256l-51.2 102.4 51.2 51.2v51.2l-102.4 51.2-51.2 52.032 51.2 50.368 51.2 51.2 51.2 102.4 33.472 33.472A408.32 408.32 0 0 1 512 921.6z"></path></symbol><symbol id="oicon-setting" viewBox="0 0 1162 1024"><path d="M1055.479204 128.810127H442.676311c-10.415913-55.551537-57.287523-97.21519-116.311031-97.21519-57.287523 0-105.895118 41.663653-116.31103 97.21519H53.815552c-10.415913 0-19.095841 8.679928-19.095841 20.831826s8.679928 20.831826 20.831826 20.831826h156.238698c10.415913 55.551537 57.287523 97.21519 116.311031 97.21519 57.287523 0 105.895118-41.663653 116.311031-97.21519h611.066907c12.151899 0 20.831826-8.679928 20.831827-20.831826s-8.679928-20.831826-20.831827-20.831826zM328.101266 224.289331c-41.663653 0-76.383363-34.719711-76.383364-76.383364 0-41.663653 34.719711-76.383363 76.383364-76.383363 41.663653 0 76.383363 34.719711 76.383363 76.383363 0 41.663653-34.719711 76.383363-76.383363 76.383364zM1055.479204 840.564195H637.106691c-10.415913-55.551537-57.287523-97.21519-116.311031-97.21519-57.287523 0-105.895118 41.663653-116.311031 97.21519H55.551537c-12.151899 0-20.831826 8.679928-20.831826 20.831827s8.679928 20.831826 20.831826 20.831826h348.933092c10.415913 55.551537 57.287523 97.21519 116.311031 97.21519 57.287523 0 105.895118-41.663653 116.311031-97.21519H1055.479204c12.151899 0 20.831826-8.679928 20.831827-20.831826 0-10.415913-8.679928-20.831826-20.831827-20.831827z m-534.683544 97.21519c-41.663653 0-76.383363-34.719711-76.383363-76.383363 0-41.663653 34.719711-76.383363 76.383363-76.383364 41.663653 0 76.383363 34.719711 76.383364 76.383364-1.735986 41.663653-34.719711 76.383363-76.383364 76.383363zM1055.479204 484.687161h-67.703435c-10.415913-55.551537-57.287523-97.21519-116.311031-97.21519-57.287523 0-105.895118 41.663653-116.311031 97.21519H55.551537c-12.151899 0-20.831826 8.679928-20.831826 20.831826s8.679928 20.831826 20.831826 20.831827h699.60217c10.415913 55.551537 57.287523 97.21519 116.311031 97.21519 57.287523 0 105.895118-41.663653 116.311031-97.21519h67.703435c12.151899 0 20.831826-8.679928 20.831827-20.831827s-8.679928-20.831826-20.831827-20.831826z m-184.014466 97.21519c-41.663653 0-76.383363-34.719711-76.383364-76.383364 0-41.663653 34.719711-76.383363 76.383364-76.383363 41.663653 0 76.383363 34.719711 76.383363 76.383363 0 41.663653-34.719711 76.383363-76.383363 76.383364z"></path></symbol></svg>
+        <val data-name="site_url" data-value="https://www.oschina.net"></val>      <val data-name="space_user_url" data-value="https://my.oschina.net/u/868789"></val>      <val data-name="g_user_url" data-value=""></val>      <val data-name="api_prefix" data-value="/action"></val>      <val data-name="g_user_code" data-value=""></val>     <val data-name="g_user_id" data-value=""></val>     <val data-name="g_user_name" data-value=""></val>     <val data-name="g_user_small_portrait" data-value="https://www.oschina.net/new-osc/img/portrait.gif"></val>     <val data-name="g_user_large_portrait" data-value="https://www.oschina.net/new-osc/img/portrait.gif"></val>     <val data-name="g_user" data-value=""></val>     <val data-name="g_user_osc_staff" data-value="false"></val>     <val data-name="login_page" data-value="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fu%2F868789%2Fblog%2F1811984"></val> 
+                <val data-name="weixinAppId" data-value="wx880def15e694b905"></val>
+        <val data-name="weixinTimestamp" data-value="1590108366117"></val>
+        <val data-name="weixinNonceStr" data-value="11a7747b-9655-419e-a52d-9f037de6c71b"></val>
+        <val data-name="weixinSignature" data-value="52275f7fddef9820e7456b4c1edae463391e0cad"></val>
+        <val data-name="weixinShareUrl" data-value="https://my.oschina.net/u/868789/blog/1811984"></val>                             
+                <val data-name="is_detail_page" data-value="true"></val>
+
+        
+        <div class="ui left inverted sidebar vertical menu" id="mobileNavSidebar">
+        <a href="https://www.oschina.net/" class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">首頁</font></font></a>
+        <a href="https://www.oschina.net/project" class="item project"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">開源軟件</font></font></a>
+        <a href="https://www.oschina.net/question" class="item question"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">問答</font></font></a>
+        <a href="https://www.oschina.net/tweets" class="item tweet"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">動彈</font></font></a>
+        <a href="https://www.oschina.net/blog" class="item blog"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">博客</font></font></a>
+        <a href="https://www.oschina.net/translate" class="item translate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">翻譯</font></font></a>
+        <a href="https://www.oschina.net/news" class="item news"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">資訊</font></font></a>
+        <a href="https://gitee.com/?utm_source=oschina&amp;utm_medium=link-index&amp;utm_campaign=home" class="item gitee" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">碼雲</font></font></a>
+        <a href="https://zb.oschina.net/projects/list.html" class="item" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">眾包</font></font></a>
+        <a href="https://www.oschina.net/event" class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">活動</font></font></a>
+        <a href="https://www.oschina.net/columns" class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">專區</font></font></a>
+        <a href="https://www.oschina.net/event/ych" class="item meetup"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">源創會</font></font></a>
+        <a href="https://job.oschina.net/" class="item" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">求職/招聘</font></font></a>
+        <a href="https://www.oschina.net/question/topic/masteronline" class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">高手問答</font></font></a>
+        <a href="https://www.oschina.net/question/topic/osc-interview" class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">開源訪談</font></font></a>
+        <a href="https://my.oschina.net/editorial-story" class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">周刊</font></font></a>
+        <a href="https://www.oschina.net/company" class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">公司開源導航頁</font></font></a>
+    </div>
+        <div class="ui right inverted sidebar vertical menu" id="mobileUserSidebar">
+                    <a class="item" href="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fu%2F868789%2Fblog%2F1811984"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登錄</font></font></a>
+            <a class="item" href="https://www.oschina.net/home/reg?goto_page=https%3A%2F%2Fmy.oschina.net%2Fu%2F868789%2Fblog%2F1811984"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">註冊</font></font></a>
+            </div>
+
+        <div class="ui vertical inverted right sidebar menu" id="sideMenu">
+    <div class="header">
+        <b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文檔章節</font></font></b>
+    </div>
+    <div class="ui basic segment" id="sideMenuBody"><ul><li><a href="https://my.oschina.net/u/868789/blog/1811984#h2_1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2018年5月14日</font></font></a></li>
+<ul><li><a href="https://my.oschina.net/u/868789/blog/1811984#h3_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C#添加Sqlite.dll 引用</font></font></a></li>
+<li><a href="https://my.oschina.net/u/868789/blog/1811984#h3_3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">異常來自HRESULT:0x8007000B</font></font></a></li>
+</ul></ul></div>
+</div>
+<div class="ui black big launch right attached fixed button" id="sideMenuLauncher" style="display: block;">
+    <i class="list icon"></i>
+    <span class="text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文檔章節</font></font></span>
+</div>
+
+
+        <div class="pusher  mobile-disabled-fixed-menu  ">
+                <div class="ui secondary inverted fixed menu" id="headerNavMenu">
+            <a class="item logo" href="https://www.oschina.net/" title="OSCHINA"><img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/logo_new.svg" alt="OSCHINA"></a>
+                                                <form action="https://www.oschina.net/search" class="item search-item">
+                <div class="ui icon input">
+                    <input type="hidden" name="scope" value="blog">
+                    <input placeholder="大家都在搜...." id="keyword" name="q" size="24" value="" type="text">
+                    <i class="search link icon"></i>
+                </div>
+                <div class="results"></div>
+            </form>
+            <div class="item download-item">
+                <a class="ui primary button" id="btnDownloadApp" href="https://www.oschina.net/app" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下載APP</font></font></a>
+            </div>
+            <div class="ui popup top left transition hidden" id="btnDownloadAppContent">
+                <h3 class="header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OSCHINA App —— </font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">關注技術領域的頭條文章</font></font></h3>
+                <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">聚合全網技術文章，根據你的閱讀喜好進行個性推薦</font></font></p>
+                <img width="200" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/osc_app_download_qrcode.png" alt="下載APP">
+            </div>
+            <div class="ui secondary text menu" id="menuList">
+                <a href="https://www.oschina.net/project" class="item project"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">開源軟件</font></font></a>
+                <a href="https://www.oschina.net/question" class="item question"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">問答</font></font></a>
+                <a href="https://www.oschina.net/tweets" class="item tweet"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">動彈</font></font></a>
+                <a href="https://www.oschina.net/blog" class="item blog"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">博客</font></font></a>
+                <a href="https://www.oschina.net/translate" class="item translate"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">翻譯</font></font></a>
+                <a href="https://www.oschina.net/news" class="item news"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">資訊</font></font></a>
+                <a href="https://gitee.com/?utm_source=oschina&amp;utm_medium=link-index&amp;utm_campaign=home" class="item gitee" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">碼雲</font></font><span class="floating ui red label giteetip"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">代碼託管</font></font></span></a>
+                <a href="https://zb.oschina.net/projects/list.html" class="item" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">眾包</font></font></a>
+                <a href="https://www.oschina.net/event" class="item event"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">活動</font></font></a>
+                <a href="https://www.oschina.net/columns" class="item column"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">專區</font></font></a>
+            </div>
+            <div class="ui dropdown item" id="moreMenu" tabindex="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                更多 </font></font><i class="dropdown icon" tabindex="0"><div class="menu" tabindex="-1"></div></i>
+                <div class="menu" tabindex="-1">
+                    <a href="https://www.oschina.net/event/ych" class="item meetup"><i class="world icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">源創會</font></font></a>
+                    <a href="https://job.oschina.net/" class="item" target="_blank"><i class="address card outline icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">求職/招聘</font></font></a>
+                    <a href="https://www.oschina.net/question/topic/masteronline" class="item"><i class="spy icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">高手問答</font></font></a>
+                    <a href="https://www.oschina.net/question/topic/osc-interview" class="item"><i class="coffee icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">開源訪談</font></font></a>
+                    <a href="https://my.oschina.net/editorial-story" class="item"><i class="calendar outline icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">周刊</font></font></a>
+                    <a href="https://www.oschina.net/company" class="item"><i class="building outline icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">公司開源導航頁</font></font></a>
+                </div>
+            </div>
+            <div class="right menu">
+                                    <a class="item" href="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fu%2F868789%2Fblog%2F1811984"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登錄</font></font></a>
+                    <a class="item" href="https://www.oschina.net/home/reg?goto_page=https%3A%2F%2Fmy.oschina.net%2Fu%2F868789%2Fblog%2F1811984"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">註冊</font></font></a>
+                            </div>
+        </div>
+                <div class="ui secondary inverted fixed menu" id="mobileHeaderNavMenu">
+            <a class="icon item toggle-mobile-nav-sidebar">
+                <i class="large content icon"></i>
+            </a>
+            <div class="logo back-to-top-toggle"><img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/logo_new.svg" alt="OSCHINA"></div>
+            <a class="icon item toggle-mobile-user-sidebar">
+                                    <i class="large user outline icon"></i>
+                            </a>
+        </div>
+                        <div id="mainScreen" class="grey">
+            <div class="ui container">
+                
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+<x-foo-define data-define="space-blog-detail"></x-foo-define> 
+<val data-name="objType" data-value="3"></val> <val data-name="objId" data-value="1811984"></val> <val data-name="author_id" data-value="868789"></val> <val data-name="space_user_id" data-value="868789"></val> 
+<val data-name="fetchCommentsUrl" data-value="?type=comments"></val>              <val data-name="publishCommentUrl" data-value="/space/blog/add_comment"></val>    <val data-name="replyCommentUrl" data-value="/space/blog/add_comment"></val>      <val data-name="deleteCommentUrl" data-value="/space/blog/delete_blog_comments"></val>  
+<val data-name="shareTitle" data-value="C#使用Sqlite.dll问题记录 - 蓝瞳的个人空间 - OSCHINA"></val>
+<val data-name="shareDesc" data-value="## 2018年5月14日 ### C#添加 Sqlite.dll 引用 1. 使用nuget，操作最为简单，同时支持32位和64位系统，推荐。缺点是多了 ef、linq等dll文件。 1. 手动添加 sqlite.dll。缺点配置繁琐；优点，只需要 `SQLite.Interop.dll` 和 `System.Data.SQLite.dll` 两个文件 这里只介绍第二种方法，步骤如下： 1. 官网 [wiki](http://..."></val>
+<val data-name="shareUrl" data-value="https://my.oschina.net/u/868789/blog/1811984"></val>
+<val data-name="sharePic" data-value="https://static.oschina.net/uploads/img/201805/14141553_5nZU.png"></val>
+
+<val data-name="weixinShareTitle" data-value="C#使用Sqlite.dll问题记录"></val> <val data-name="weixinShareImgUrl" data-value="https://static.oschina.net/uploads/img/201805/14141553_5nZU.png"></val> 
+<val data-name="isPending" data-value="false"></val> 
+<div class="ui internally grid blog-detail bg-wrap">
+    <div class="row">
+        <div class="two wide computer only column" style="height: 2653px; min-height: 359px;">
+            <div class="ui sticky float-menu fixed top" id="floatMenu" style="left: 341.5px; width: 128px !important; height: 359px !important; margin-top: 200px;">
+                <div class="ui vertical large compact menu">
+                                            <a class="item donate" donate="" data-id="1811984" data-obj-type="16344358" data-subject="C#使用Sqlite.dll问题记录" data-donater="" data-author="868789" data-return-url="https://my.oschina.net/u/868789/blog/1811984" data-notify-url="https://my.oschina.net/action/donate/paySuccess">                             <i class="yen icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">打賞</font></font></a>
+                                        <a class="item comment-btn" href="https://my.oschina.net/u/868789/blog/1811984#comments" title="共有0 條評論"><i class="comment outline icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">評論</font></font></a>
+                    <a class="item collect-btn " data-id="1811984" data-user-id="868789" data-obj-type="3" data-max="99" data-tag-required="" data-current-user-id="" data-recommend-tags="C#,sqlite"><i class="star outline icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">收藏</font></font></a>
+                    <a class="item like article-like " data-id="1811984"><i class="thumbs up outline icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">點贊</font></font></a>
+                    <h5 class="ui item inverted brown header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分享文章</font></font></h5>
+                    <div class="left-menu osc-share menu-share" data-tag="share-blog">
+                        <a class="item" data-platform="weibo" data-value="weibo"><i class="weibo icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微博</font></font></a>
+                        <a class="item" data-platform="qq" data-value="qq"><i class="qq icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">QQ</font></font></a>
+                        <a class="item" data-platform="wechat" data-value="wechat"><i class="weixin icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微信</font></font></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="twelve wide computer sixteen wide tablet sixteen wide mobile column body-container">
+            <div class="float-menu-content">
+                <div class="ui breadcrumb">
+                    <a class="section" href="https://my.oschina.net/u/868789"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">藍瞳的個人空間</font></font></a>
+                                                                <i class="right chevron icon divider"></i>
+                        <a class="section" href="https://my.oschina.net/u/868789?tab=newest&amp;catalogId=2575629"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">工作日誌</font></font></a>
+                                        <i class="right chevron icon divider"></i>
+                    <div class="active section"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">正文</font></font></div>
+                </div>
+                <div class="article-detail">
+                                                                    <div class="ad-wrap">
+            <div id="blog-title-ad" data-traceid="blog_ali" data-tracepid="blogdown" style="">
+<a href="http://e.cn.miaozhen.com/r/k=2170654&amp;p=7aLO3&amp;dx=__IPDX__&amp;rt=2&amp;pro=n&amp;ns=__IP__&amp;ni=__IESID__&amp;v=__LOC__&amp;xa=__ADPLATFORM__&amp;tr=__REQUESTID__&amp;o=https://activity.huaweicloud.com/discount_area_v5/index.html?utm_source=OSCHINA&amp;utm_medium=banner&amp;utm_campaign=10056&amp;utm_content=&amp;utm_term=&amp;utm_adplace=AdPlace024690" target="_blank">
+<img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/up-6406ae2e97b483dcfa5dcfdfac7dba45bb1.JPEG"></a>
+</div>
+            </div>
+                                                    <h2 class="header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                        C#使用Sqlite.dll問題記錄
+                                                                                                    </font></font><div class="ui teal label horizontal" data-tooltip="原创"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">原</font></font></div>
+                                                                                            </h2>
+                    <div class="extra ui horizontal list meta-wrap">
+                        <div class="item">
+                            <a href="https://my.oschina.net/u/868789" class="__user">                            <div class="osc-avatar small-portrait _35x35 avatar" title="藍瞳" data-user-id="868789">
+                <img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/50x50" alt="藍瞳" title="藍瞳">
+            </div>
+            &nbsp;<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">藍瞳</font></font></span></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">發佈於2018/05/14 10:46
+                        </font></font></div>
+                        <div class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字數277</font></font></div>
+                        <div class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">閱讀771</font></font></div>
+                        <div class="item collect-btn " data-id="1811984" data-user-id="868789" data-obj-type="3" data-max="99" data-tag-required="" data-current-user-id="" data-recommend-tags="C#,sqlite"><i class="star outline icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">收藏</font></font><span data-collect-count="" data-id="1811984" data-obj-type="3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span></div>
+                        <div class="item"><a class="normal like article-like " data-id="1811984"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">點贊</font></font><span data-article-like-count=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></span></a></div>
+                        <div class="item comment-count"><a href="https://my.oschina.net/u/868789/blog/1811984#comments" class="normal"><i class="comment outline icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">評論</font></font><span data-article-reply-count=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></span></a></div>
+                                            </div>
+                                                                        <div class="tags">
+                                <a class="ui horizontal label" href="https://my.oschina.net/u/868789?q=C#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C#</font></font></a><a class="ui horizontal label" href="https://my.oschina.net/u/868789?q=sqlite"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sqlite</font></font></a>                            </div>
+                                            
+                    <div class="content" id="articleContent">
+                                                                                
+                        <h2 id="h2_1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2018年5月14日</font></font></h2>
+<h3 id="h3_2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C#添加Sqlite.dll 引用</font></font></h3>
+<ol>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用nuget，操作最為簡單，同時支持32位和64位系統，推薦。</font><font style="vertical-align: inherit;">缺點是多了ef、linq等dll文件。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">手動添加sqlite.dll。</font><font style="vertical-align: inherit;">缺點配置繁瑣；優點，只需要</font></font><code>SQLite.Interop.dll</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><code>System.Data.SQLite.dll</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">兩個文件</font></font></li>
+</ol>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">這裡只介紹第二種方法，步驟如下：</font></font></p>
+<ol>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">官網</font></font><a href="http://system.data.sqlite.org/index.html/doc/trunk/www/downloads.wiki"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">wiki</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下載，下載.NET 2.0 SP2預編譯靜態鏈接庫（Precompiled Statically-Linked Binaries for 64-bit Windows (.NET Framework 2.0 SP2)）的binary版</font></font></li>
+</ol>
+<p><img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/14141553_5nZU.png" alt="輸入圖片說明" title="在這裡輸入圖片標題" class="zoom-in-cursor"></p>
+<ol start="2">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置config 文件，具體參考已下載zip 文件裡的test.exe.config 代碼</font></font></li>
+</ol>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">system.data</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">DbProviderFactories</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">remove</span> <span class="hljs-attr">invariant</span>=<span class="hljs-string">"System.Data.SQLite"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">add</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"SQLite Data Provider"</span> <span class="hljs-attr">invariant</span>=<span class="hljs-string">"System.Data.SQLite"</span> <span class="hljs-attr">description</span>=<span class="hljs-string">".NET Framework Data Provider for SQLite"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"System.Data.SQLite.SQLiteFactory, System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">DbProviderFactories</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">system.data</span>&gt;</span>
+</code></pre>
+<h3 id="h3_3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">異常來自HRESULT:0x8007000B</font></font></h3>
+<p>System.BadImageFormatException:“试图加载格式不正确的程序。 (异常来自 HRESULT:0x8007000B)”</p>
+<p><img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/14104140_j4qS.png" alt="輸入圖片說明" title="在這裡輸入圖片標題" class="zoom-in-cursor"></p>
+<p><strong>原因</strong>：C# 在调用C++dll时，可能会出现 ：试图加载格式不正确的程序。 (异常来自 HRESULT:0x8007000B)这个错误。</p>
+<p><strong>实际情况</strong>：生成平台目标为AnyCPU（首选32）
+<img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/14104603_o0Lp.png" alt="輸入圖片說明" title="在這裡輸入圖片標題" class="zoom-in-cursor"></p>
+<p><strong>解决</strong>：首选32 去勾，或者生成平台改为 x64。懒人方法是使用nuget添加 sqlite 引用。</p>
+
+                    </div>
+
+                                                                    <div class="ad-wrap" style="margin-top: 20px;">
+            <div id="blog-title-ad" data-traceid="blog_ali" data-tracepid="blogdown" style="">
+<script async="" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/f(8).txt"></script>
+<!-- 博客详情页下方 -->
+<ins class="adsbygoogle" style="display: inline-block; width: 880px; height: 90px;" data-ad-client="ca-pub-7090564139599510" data-ad-slot="2321828009" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:880px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:880px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:880px;height:90px;" sandbox="allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="880" height="90" frameborder="0" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-google-query-id="CL7quKOfxukCFUuJwgodU5cF4w" data-load-complete="true"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+            </div>
+                                
+                    <div class="ui hidden divider"></div>
+
+                    <p style="text-align: center;">
+                                                    © 著作权归作者所有
+                                            </p>
+                </div>
+
+                                <div class="ui basic center aligned segment action">
+                    <div class="ui huge buttons">
+                                                    <a class="ui green button donate" donate="" data-id="1811984" data-obj-type="16344358" data-subject="C#使用Sqlite.dll问题记录" data-donater="" data-author="868789" data-return-url="https://my.oschina.net/u/868789/blog/1811984" data-notify-url="https://my.oschina.net/action/donate/paySuccess">                                 <i class="yen icon"></i>打赏</a>
+                                                <a class="ui basic button like article-like " data-id="1811984">
+                            <i class="thumbs up outline icon"></i>点赞 (<span data-article-like-count="">1</span>)
+                        </a>
+                        <a class="ui basic button collect-btn hover" data-id="1811984" data-user-id="868789" data-obj-type="3" data-max="99" data-tag-required="" data-current-user-id="" data-recommend-tags="C#,sqlite"><i class="star outline icon"></i>收藏 (<span data-collect-count="" data-id="1811984" data-obj-type="3">0</span>)</a>
+                        <div class="ui basic dropdown share button osc-share dropdown-share" data-tag="share-blog" tabindex="0">
+                            <i class="share icon"></i> <span>分享</span>
+                            <div class="menu" tabindex="-1">
+                                <a class="item" data-platform="weibo" data-value="weibo"><i class="weibo icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微博</font></font></a>
+                                <a class="item" data-platform="qq" data-value="qq"><i class="qq icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">QQ</font></font></a>
+                                <a class="item" data-platform="wechat" data-value="wechat"><i class="weixin icon"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">微信</font></font></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui basic segment more-action">
+                        <a class="print-btn" href="https://my.oschina.net/u/868789/blog/1811984/print" target="_blank">
+                            <i class="print grey icon"></i>打印</a>
+                        <a class="ban" ban-report="" data-id="1811984" data-obj-type="3" data-url="https://my.oschina.net/u/868789/blog/1811984">
+                            <i class="flag red icon"></i>举报</a>
+                    </div>
+                </div>
+
+                                
+
+                                <div class="around-articles-wrap">
+                                                            <div class="around-item around-left">
+                        <i class="angle left icon"></i>
+                        <span class="text">上一篇：</span>
+                        <a class="link" href="https://my.oschina.net/u/868789/blog/1812603">c#使用nuget.exe CLI发布 nupkg 包</a>
+                    </div>
+                    
+                                                            <div class="around-item around-right">
+                        <span class="text">下一篇：</span>
+                        <a class="link" href="https://my.oschina.net/u/868789/blog/1811461">C#获取当前程序运行路径的方法集合</a>
+                        <i class="angle right icon"></i>
+                    </div>
+                                    </div>
+
+                                <div class="ui info message author-card">
+                    <div class="ui items">
+                        <div class="item author-card-item">
+                            <a class="ui avatar tiny image" href="https://my.oschina.net/u/868789">
+                                                            <div class="osc-avatar large-portrait _80x80" title="藍瞳" data-user-id="868789">
+                <img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/200x200" alt="藍瞳" title="藍瞳">
+            </div>
+                                        </a>
+                            <div class="content author-card-info">
+                                <div class="author-header clearfix">
+                                                                        <h3 class="author-name"><a class="__user" href="https://my.oschina.net/u/868789">蓝瞳</a></h3>
+                                                                                                                <div class="ui mini images medals">
+                                                                                                                                                                                                        <img class="ui image popup-oscer" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/slogo1558595384499.png" alt="">
+                                                        <div class="ui flowing popup hidden items">
+                                                            <div class="medal-popup-box item">
+                                                                <img class="ui image" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/logo1558595384495.png">
+                                                                <div class="content">
+                                                                    <h3 class="header"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">碼雲六週年</font></font></h3>
+                                                                    <div class="desc text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">社區可以使用碼雲賬號登錄啦！</font><font style="vertical-align: inherit;">往後餘生，結伴同行</font></font></div>
+                                                                    <div class="extra text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                                                        領取時間：2019/05/27
+                                                                        </font></font><div class="text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">領取條件：在六週年期間綁定碼雲賬號即可領取</font></font></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                                                                                                                                        </div>
+                                                                    </div>
+                                <div class="ui horizontal list">
+                                    <div class="item">粉丝 <span class="followers-count" data-user-id="868789" data-followers-count="46">46</span></div>
+                                    <div class="item">博文 26</div>
+                                    <div class="item">码字总数 4131</div>
+                                    <div class="item">作品 0</div>
+                                </div>
+                                <div class="ui hidden fitted clearing divider"></div>
+                                                                                                    <div class="ui horizontal list">
+                                                                                    <div class="item"><i class="map marker alternate icon"></i> 广州</div>
+                                                                                                                            <div class="item"><i class="address card outline icon"></i> 程序员 </div>
+                                                                            </div>
+                                                                                                    <div class="ui hidden fitted clearing divider"></div>
+                                                                                                                    <a class="ui green compact button follow-btn" data-user-id="868789" data-follow-status="1"><i class="heart outline icon"></i><span class="text">关注</span></a>
+                                                                                                            <a class="ui green basic compact button send-message-btn" data-user-id="868789" data-user-name="蓝瞳"><i class="envelope outline icon"></i>私信</a>
+                                                                        <a class="ui green basic compact button" href="https://www.oschina.net/question/ask?user=868789" target="_blank"><i class="comment outline icon"></i>提问</a>
+                                                            </div>
+                            <div class="content panel-skills-radar" style="">
+                                <div class="skills-radar">
+                                    <div class="radar-wrap" radar="" data-user-id="868789" data-skills-num="5" data-detail-url="https://my.oschina.net/u/868789/radar" data-container=".panel-skills-radar">
+                                        <div class="radar-map" style="position: relative;"><canvas width="280" height="122" style="width: 280px; height: 122px;"></canvas></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                                                                    <div class="ui threaded comments secondary segment" id="commentsContainer">
+        <div class="ui inverted dimmer comments-loader">
+        <div class="ui text loader"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">加載中</font></font></div>
+    </div>
+
+        <div class="comments-wrap">
+                      
+
+
+                                                                           
+<h3 id="comments" class="ui header">评论(<span>0</span>)</h3>
+
+        </div>
+
+                <div id="commentForm"><form class="ui reply form comment-form"><div class="field"><textarea rows="4" placeholder="在這裡發表你對此文的觀點" maxlength="1000" class="disabled-resize"></textarea></div> <div class="field foot-bar"><div class="ui horizontal link small list toolbox"><a data-popup="toolbox-emoji" class="item"><i class="smile icon"></i>插入表情</a> <div class="ui popup bottom left transition hidden toolbox-popup toolbox-emoji"><div class="emoji-wrapper"><div class="ui secondary pointing menu"><a class="item active"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">People</font></font></a><a class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nature</font></font></a><a class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Objects</font></font></a><a class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Places</font></font></a><a class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Symbols</font></font></a></div> <div class="emoji-list"><div class="ui ten column padded grid"><div class="column"><div title="bowtie" data-emoji="bowtie" class="emoji-item"></div></div><div class="column"><div title="smile" data-emoji="smile" class="emoji-item"></div></div><div class="column"><div title="laughing" data-emoji="laughing" class="emoji-item"></div></div><div class="column"><div title="blush" data-emoji="blush" class="emoji-item"></div></div><div class="column"><div title="smiley" data-emoji="smiley" class="emoji-item"></div></div><div class="column"><div title="relaxed" data-emoji="relaxed" class="emoji-item"></div></div><div class="column"><div title="smirk" data-emoji="smirk" class="emoji-item"></div></div><div class="column"><div title="heart_eyes" data-emoji="heart_eyes" class="emoji-item"></div></div><div class="column"><div title="kissing_heart" data-emoji="kissing_heart" class="emoji-item"></div></div><div class="column"><div title="kissing_closed_eyes" data-emoji="kissing_closed_eyes" class="emoji-item"></div></div><div class="column"><div title="flushed" data-emoji="flushed" class="emoji-item"></div></div><div class="column"><div title="relieved" data-emoji="relieved" class="emoji-item"></div></div><div class="column"><div title="satisfied" data-emoji="satisfied" class="emoji-item"></div></div><div class="column"><div title="grin" data-emoji="grin" class="emoji-item"></div></div><div class="column"><div title="wink" data-emoji="wink" class="emoji-item"></div></div><div class="column"><div title="stuck_out_tongue_winking_eye" data-emoji="stuck_out_tongue_winking_eye" class="emoji-item"></div></div><div class="column"><div title="stuck_out_tongue_closed_eyes" data-emoji="stuck_out_tongue_closed_eyes" class="emoji-item"></div></div><div class="column"><div title="grinning" data-emoji="grinning" class="emoji-item"></div></div><div class="column"><div title="kissing" data-emoji="kissing" class="emoji-item"></div></div><div class="column"><div title="kissing_smiling_eyes" data-emoji="kissing_smiling_eyes" class="emoji-item"></div></div><div class="column"><div title="stuck_out_tongue" data-emoji="stuck_out_tongue" class="emoji-item"></div></div><div class="column"><div title="sleeping" data-emoji="sleeping" class="emoji-item"></div></div><div class="column"><div title="worried" data-emoji="worried" class="emoji-item"></div></div><div class="column"><div title="frowning" data-emoji="frowning" class="emoji-item"></div></div><div class="column"><div title="anguished" data-emoji="anguished" class="emoji-item"></div></div><div class="column"><div title="open_mouth" data-emoji="open_mouth" class="emoji-item"></div></div><div class="column"><div title="grimacing" data-emoji="grimacing" class="emoji-item"></div></div><div class="column"><div title="confused" data-emoji="confused" class="emoji-item"></div></div><div class="column"><div title="hushed" data-emoji="hushed" class="emoji-item"></div></div><div class="column"><div title="expressionless" data-emoji="expressionless" class="emoji-item"></div></div><div class="column"><div title="unamused" data-emoji="unamused" class="emoji-item"></div></div><div class="column"><div title="sweat_smile" data-emoji="sweat_smile" class="emoji-item"></div></div><div class="column"><div title="sweat" data-emoji="sweat" class="emoji-item"></div></div><div class="column"><div title="disappointed_relieved" data-emoji="disappointed_relieved" class="emoji-item"></div></div><div class="column"><div title="weary" data-emoji="weary" class="emoji-item"></div></div><div class="column"><div title="pensive" data-emoji="pensive" class="emoji-item"></div></div><div class="column"><div title="disappointed" data-emoji="disappointed" class="emoji-item"></div></div><div class="column"><div title="confounded" data-emoji="confounded" class="emoji-item"></div></div><div class="column"><div title="fearful" data-emoji="fearful" class="emoji-item"></div></div><div class="column"><div title="cold_sweat" data-emoji="cold_sweat" class="emoji-item"></div></div><div class="column"><div title="persevere" data-emoji="persevere" class="emoji-item"></div></div><div class="column"><div title="cry" data-emoji="cry" class="emoji-item"></div></div><div class="column"><div title="sob" data-emoji="sob" class="emoji-item"></div></div><div class="column"><div title="joy" data-emoji="joy" class="emoji-item"></div></div><div class="column"><div title="astonished" data-emoji="astonished" class="emoji-item"></div></div><div class="column"><div title="scream" data-emoji="scream" class="emoji-item"></div></div><div class="column"><div title="neckbeard" data-emoji="neckbeard" class="emoji-item"></div></div><div class="column"><div title="tired_face" data-emoji="tired_face" class="emoji-item"></div></div><div class="column"><div title="angry" data-emoji="angry" class="emoji-item"></div></div><div class="column"><div title="rage" data-emoji="rage" class="emoji-item"></div></div><div class="column"><div title="triumph" data-emoji="triumph" class="emoji-item"></div></div><div class="column"><div title="sleepy" data-emoji="sleepy" class="emoji-item"></div></div><div class="column"><div title="yum" data-emoji="yum" class="emoji-item"></div></div><div class="column"><div title="mask" data-emoji="mask" class="emoji-item"></div></div><div class="column"><div title="sunglasses" data-emoji="sunglasses" class="emoji-item"></div></div><div class="column"><div title="dizzy_face" data-emoji="dizzy_face" class="emoji-item"></div></div><div class="column"><div title="imp" data-emoji="imp" class="emoji-item"></div></div><div class="column"><div title="smiling_imp" data-emoji="smiling_imp" class="emoji-item"></div></div><div class="column"><div title="neutral_face" data-emoji="neutral_face" class="emoji-item"></div></div><div class="column"><div title="no_mouth" data-emoji="no_mouth" class="emoji-item"></div></div><div class="column"><div title="innocent" data-emoji="innocent" class="emoji-item"></div></div><div class="column"><div title="alien" data-emoji="alien" class="emoji-item"></div></div><div class="column"><div title="yellow_heart" data-emoji="yellow_heart" class="emoji-item"></div></div><div class="column"><div title="blue_heart" data-emoji="blue_heart" class="emoji-item"></div></div><div class="column"><div title="purple_heart" data-emoji="purple_heart" class="emoji-item"></div></div><div class="column"><div title="heart" data-emoji="heart" class="emoji-item"></div></div><div class="column"><div title="green_heart" data-emoji="green_heart" class="emoji-item"></div></div><div class="column"><div title="broken_heart" data-emoji="broken_heart" class="emoji-item"></div></div><div class="column"><div title="heartbeat" data-emoji="heartbeat" class="emoji-item"></div></div><div class="column"><div title="heartpulse" data-emoji="heartpulse" class="emoji-item"></div></div><div class="column"><div title="two_hearts" data-emoji="two_hearts" class="emoji-item"></div></div><div class="column"><div title="revolving_hearts" data-emoji="revolving_hearts" class="emoji-item"></div></div><div class="column"><div title="cupid" data-emoji="cupid" class="emoji-item"></div></div><div class="column"><div title="sparkling_heart" data-emoji="sparkling_heart" class="emoji-item"></div></div><div class="column"><div title="sparkles" data-emoji="sparkles" class="emoji-item"></div></div><div class="column"><div title="star" data-emoji="star" class="emoji-item"></div></div><div class="column"><div title="star2" data-emoji="star2" class="emoji-item"></div></div><div class="column"><div title="dizzy" data-emoji="dizzy" class="emoji-item"></div></div><div class="column"><div title="boom" data-emoji="boom" class="emoji-item"></div></div><div class="column"><div title="collision" data-emoji="collision" class="emoji-item"></div></div><div class="column"><div title="anger" data-emoji="anger" class="emoji-item"></div></div><div class="column"><div title="exclamation" data-emoji="exclamation" class="emoji-item"></div></div><div class="column"><div title="question" data-emoji="question" class="emoji-item"></div></div><div class="column"><div title="grey_exclamation" data-emoji="grey_exclamation" class="emoji-item"></div></div><div class="column"><div title="grey_question" data-emoji="grey_question" class="emoji-item"></div></div><div class="column"><div title="zzz" data-emoji="zzz" class="emoji-item"></div></div><div class="column"><div title="dash" data-emoji="dash" class="emoji-item"></div></div><div class="column"><div title="sweat_drops" data-emoji="sweat_drops" class="emoji-item"></div></div><div class="column"><div title="notes" data-emoji="notes" class="emoji-item"></div></div><div class="column"><div title="musical_note" data-emoji="musical_note" class="emoji-item"></div></div><div class="column"><div title="fire" data-emoji="fire" class="emoji-item"></div></div><div class="column"><div title="hankey" data-emoji="hankey" class="emoji-item"></div></div><div class="column"><div title="poop" data-emoji="poop" class="emoji-item"></div></div><div class="column"><div title="shit" data-emoji="shit" class="emoji-item"></div></div><div class="column"><div title="+1" data-emoji="+1" class="emoji-item"></div></div><div class="column"><div title="thumbsup" data-emoji="thumbsup" class="emoji-item"></div></div><div class="column"><div title="-1" data-emoji="-1" class="emoji-item"></div></div><div class="column"><div title="thumbsdown" data-emoji="thumbsdown" class="emoji-item"></div></div><div class="column"><div title="ok_hand" data-emoji="ok_hand" class="emoji-item"></div></div><div class="column"><div title="punch" data-emoji="punch" class="emoji-item"></div></div><div class="column"><div title="facepunch" data-emoji="facepunch" class="emoji-item"></div></div><div class="column"><div title="fist" data-emoji="fist" class="emoji-item"></div></div><div class="column"><div title="v" data-emoji="v" class="emoji-item"></div></div><div class="column"><div title="wave" data-emoji="wave" class="emoji-item"></div></div><div class="column"><div title="hand" data-emoji="hand" class="emoji-item"></div></div><div class="column"><div title="raised_hand" data-emoji="raised_hand" class="emoji-item"></div></div><div class="column"><div title="open_hands" data-emoji="open_hands" class="emoji-item"></div></div><div class="column"><div title="point_up" data-emoji="point_up" class="emoji-item"></div></div><div class="column"><div title="point_down" data-emoji="point_down" class="emoji-item"></div></div><div class="column"><div title="point_left" data-emoji="point_left" class="emoji-item"></div></div><div class="column"><div title="point_right" data-emoji="point_right" class="emoji-item"></div></div><div class="column"><div title="raised_hands" data-emoji="raised_hands" class="emoji-item"></div></div><div class="column"><div title="pray" data-emoji="pray" class="emoji-item"></div></div><div class="column"><div title="point_up_2" data-emoji="point_up_2" class="emoji-item"></div></div><div class="column"><div title="clap" data-emoji="clap" class="emoji-item"></div></div><div class="column"><div title="muscle" data-emoji="muscle" class="emoji-item"></div></div><div class="column"><div title="metal" data-emoji="metal" class="emoji-item"></div></div><div class="column"><div title="fu" data-emoji="fu" class="emoji-item"></div></div><div class="column"><div title="walking" data-emoji="walking" class="emoji-item"></div></div><div class="column"><div title="runner" data-emoji="runner" class="emoji-item"></div></div><div class="column"><div title="running" data-emoji="running" class="emoji-item"></div></div><div class="column"><div title="couple" data-emoji="couple" class="emoji-item"></div></div><div class="column"><div title="family" data-emoji="family" class="emoji-item"></div></div><div class="column"><div title="two_men_holding_hands" data-emoji="two_men_holding_hands" class="emoji-item"></div></div><div class="column"><div title="two_women_holding_hands" data-emoji="two_women_holding_hands" class="emoji-item"></div></div><div class="column"><div title="dancer" data-emoji="dancer" class="emoji-item"></div></div><div class="column"><div title="dancers" data-emoji="dancers" class="emoji-item"></div></div><div class="column"><div title="ok_woman" data-emoji="ok_woman" class="emoji-item"></div></div><div class="column"><div title="no_good" data-emoji="no_good" class="emoji-item"></div></div><div class="column"><div title="information_desk_person" data-emoji="information_desk_person" class="emoji-item"></div></div><div class="column"><div title="raising_hand" data-emoji="raising_hand" class="emoji-item"></div></div><div class="column"><div title="bride_with_veil" data-emoji="bride_with_veil" class="emoji-item"></div></div><div class="column"><div title="person_with_pouting_face" data-emoji="person_with_pouting_face" class="emoji-item"></div></div><div class="column"><div title="person_frowning" data-emoji="person_frowning" class="emoji-item"></div></div><div class="column"><div title="bow" data-emoji="bow" class="emoji-item"></div></div><div class="column"><div title="couplekiss" data-emoji="couplekiss" class="emoji-item"></div></div><div class="column"><div title="couple_with_heart" data-emoji="couple_with_heart" class="emoji-item"></div></div><div class="column"><div title="massage" data-emoji="massage" class="emoji-item"></div></div><div class="column"><div title="haircut" data-emoji="haircut" class="emoji-item"></div></div><div class="column"><div title="nail_care" data-emoji="nail_care" class="emoji-item"></div></div><div class="column"><div title="boy" data-emoji="boy" class="emoji-item"></div></div><div class="column"><div title="girl" data-emoji="girl" class="emoji-item"></div></div><div class="column"><div title="woman" data-emoji="woman" class="emoji-item"></div></div><div class="column"><div title="man" data-emoji="man" class="emoji-item"></div></div><div class="column"><div title="baby" data-emoji="baby" class="emoji-item"></div></div><div class="column"><div title="older_woman" data-emoji="older_woman" class="emoji-item"></div></div><div class="column"><div title="older_man" data-emoji="older_man" class="emoji-item"></div></div><div class="column"><div title="person_with_blond_hair" data-emoji="person_with_blond_hair" class="emoji-item"></div></div><div class="column"><div title="man_with_gua_pi_mao" data-emoji="man_with_gua_pi_mao" class="emoji-item"></div></div><div class="column"><div title="man_with_turban" data-emoji="man_with_turban" class="emoji-item"></div></div><div class="column"><div title="construction_worker" data-emoji="construction_worker" class="emoji-item"></div></div><div class="column"><div title="cop" data-emoji="cop" class="emoji-item"></div></div><div class="column"><div title="angel" data-emoji="angel" class="emoji-item"></div></div><div class="column"><div title="princess" data-emoji="princess" class="emoji-item"></div></div><div class="column"><div title="smiley_cat" data-emoji="smiley_cat" class="emoji-item"></div></div><div class="column"><div title="smile_cat" data-emoji="smile_cat" class="emoji-item"></div></div><div class="column"><div title="heart_eyes_cat" data-emoji="heart_eyes_cat" class="emoji-item"></div></div><div class="column"><div title="kissing_cat" data-emoji="kissing_cat" class="emoji-item"></div></div><div class="column"><div title="smirk_cat" data-emoji="smirk_cat" class="emoji-item"></div></div><div class="column"><div title="scream_cat" data-emoji="scream_cat" class="emoji-item"></div></div><div class="column"><div title="crying_cat_face" data-emoji="crying_cat_face" class="emoji-item"></div></div><div class="column"><div title="joy_cat" data-emoji="joy_cat" class="emoji-item"></div></div><div class="column"><div title="pouting_cat" data-emoji="pouting_cat" class="emoji-item"></div></div><div class="column"><div title="japanese_ogre" data-emoji="japanese_ogre" class="emoji-item"></div></div><div class="column"><div title="japanese_goblin" data-emoji="japanese_goblin" class="emoji-item"></div></div><div class="column"><div title="see_no_evil" data-emoji="see_no_evil" class="emoji-item"></div></div><div class="column"><div title="hear_no_evil" data-emoji="hear_no_evil" class="emoji-item"></div></div><div class="column"><div title="speak_no_evil" data-emoji="speak_no_evil" class="emoji-item"></div></div><div class="column"><div title="guardsman" data-emoji="guardsman" class="emoji-item"></div></div><div class="column"><div title="skull" data-emoji="skull" class="emoji-item"></div></div><div class="column"><div title="feet" data-emoji="feet" class="emoji-item"></div></div><div class="column"><div title="lips" data-emoji="lips" class="emoji-item"></div></div><div class="column"><div title="kiss" data-emoji="kiss" class="emoji-item"></div></div><div class="column"><div title="droplet" data-emoji="droplet" class="emoji-item"></div></div><div class="column"><div title="ear" data-emoji="ear" class="emoji-item"></div></div><div class="column"><div title="eyes" data-emoji="eyes" class="emoji-item"></div></div><div class="column"><div title="nose" data-emoji="nose" class="emoji-item"></div></div><div class="column"><div title="tongue" data-emoji="tongue" class="emoji-item"></div></div><div class="column"><div title="love_letter" data-emoji="love_letter" class="emoji-item"></div></div><div class="column"><div title="bust_in_silhouette" data-emoji="bust_in_silhouette" class="emoji-item"></div></div><div class="column"><div title="busts_in_silhouette" data-emoji="busts_in_silhouette" class="emoji-item"></div></div><div class="column"><div title="speech_balloon" data-emoji="speech_balloon" class="emoji-item"></div></div><div class="column"><div title="thought_balloon" data-emoji="thought_balloon" class="emoji-item"></div></div><div class="column"><div title="feelsgood" data-emoji="feelsgood" class="emoji-item"></div></div><div class="column"><div title="finnadie" data-emoji="finnadie" class="emoji-item"></div></div><div class="column"><div title="goberserk" data-emoji="goberserk" class="emoji-item"></div></div><div class="column"><div title="godmode" data-emoji="godmode" class="emoji-item"></div></div><div class="column"><div title="hurtrealbad" data-emoji="hurtrealbad" class="emoji-item"></div></div><div class="column"><div title="rage1" data-emoji="rage1" class="emoji-item"></div></div><div class="column"><div title="rage2" data-emoji="rage2" class="emoji-item"></div></div><div class="column"><div title="rage3" data-emoji="rage3" class="emoji-item"></div></div><div class="column"><div title="rage4" data-emoji="rage4" class="emoji-item"></div></div><div class="column"><div title="suspect" data-emoji="suspect" class="emoji-item"></div></div><div class="column"><div title="trollface" data-emoji="trollface" class="emoji-item"></div></div></div></div></div></div> <a class="item"><i class="hashtag icon"></i>插入软件</a></div> <div class="count">0/1000</div> <div class="ui primary labeled icon button right floated disabled"><i class="icon edit"></i> 发表评论
+                    </div></div></form> <div class="ui mini message hidden" style="display: none;"><i class="icon info"></i> <span></span></div></div>
+    </div>
+
+
+
+                            </div>
+                        <div class="ui basic segment article-list">
+                <div class="scroll-tab hidden-scroll">
+                    <div class="ui green pointing secondary massive menu spaceBlog-tab">
+                        <a class="active item" data-tab="relArticleList">相关文章</a>
+                        <a class="item" data-tab="newArticleList">最新文章</a>
+                    </div>
+                </div>
+                <div class="ui basic segment active tab article-list" data-tab="relArticleList" id="relArticleList">
+                                          
+
+    <div class="ui very relaxed items list-container blog-detail-list-container">
+                                    <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/u/4352677/blog/3412545" target="_blank" title="SQLite加密wxSqlite3">SQLite加密 wxSqlite3</a>
+                        <div class="description">
+                            <p class="line-clamp">一直在网上搜wxSqlite3的文档，但是总找不到能真正解决问题的，就是一个简单的编译wxSqlite3自带的示例也出了老多问题，后来却发现，其实wxSqlite3的readme中已经有了详细的方法，哦，就在眼...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">osc_odfa308v</div>
+                                <div class="item">2019/08/28</div>
+
+                                <div class="item"><i class="eye icon"></i> 16</div>
+                                <div class="item"><i class="comment outline icon"></i> 0</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://www.oschina.net/question/234345_48440" target="_blank" title="Windows下SQLite自動下載並編譯(含dll和exe)">Windows下SQLite自动下载并编译(含dll和exe)</a>
+                        <div class="description">
+                            <p class="line-clamp">好久没有光顾sqlite了，没想到已经到了3.7.8了。 以前手动下载，并且建工程，编译，挺浪费时间的。干脆用wget, 7z, 结合批处理，整理成一个可以下载并编译成dll和exe的脚本。至于wget, 7z,网...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">晨曦之光</div>
+                                <div class="item">2012/04/12</div>
+
+                                <div class="item"><i class="eye icon"></i> 720</div>
+                                <div class="item"><i class="comment outline icon"></i> 0</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/u/580940/blog/214432" target="_blank" title="SQLite3.8.4.2在Windows平台下的編譯和使用">SQLite3.8.4.2在Windows平台下的编译和使用</a>
+                        <div class="description">
+                            <p class="line-clamp">SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. SQLite is the most widely deployed SQL database......</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">Micooz</div>
+                                <div class="item">2014/03/30</div>
+
+                                <div class="item"><i class="eye icon"></i> 2.9K</div>
+                                <div class="item"><i class="comment outline icon"></i> 0</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/u/4417318/blog/3430999" target="_blank" title="使用Quartz.Net定時刪除Log">使用Quartz.Net定时删除Log</a>
+                        <div class="description">
+                            <p class="line-clamp">Log4Net是我们经常使用的记log框架，但是最近发现了两个问题： 1. 按日期（rollingStyle）生成的文件没有自动删除（MaxSizeRollBackups）；（按大小生成的会自动删除） 2. 如果按混合（Compo...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">osc_yd2orh02</div>
+                                <div class="item">2019/08/13</div>
+
+                                <div class="item"><i class="eye icon"></i> 2</div>
+                                <div class="item"><i class="comment outline icon"></i> 0</div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item">
+                    <div class="content">
+                        <a class="header" href="https://www.cnblogs.com/myzony/archive/2019/11/27/11944867.html" target="_blank" title="C# 結合PInvoke 對接IP 攝像頭的筆記">C# 结合 PInvoke 对接 IP 摄像头的笔记</a>
+                        <div class="description">
+                            <p class="line-clamp">最近做项目的时候，需要对接厂商提供的 IP 摄像头。但是他们只提供了 C++ 的 SDK，没办法，只能开始撸 C# 的 SDK Helper 类。本篇文章主要记录了对接 C++ DLL 需要注意的几个地方，以及常见类...</p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui horizontal list">
+                                <div class="item">myzony</div>
+                                <div class="item">2019/11/27</div>
+
+                                <div class="item"><i class="eye icon"></i> 0</div>
+                                <div class="item"><i class="comment outline icon"></i> 0</div>
+                            </div>
+                        </div>
+                    </div>
+                                                                <div class="images">
+                            <a class="ui small image" href="https://www.cnblogs.com/myzony/archive/2019/11/27/11944867.html" target="_blank" title="C# 結合PInvoke 對接IP 攝像頭的筆記">
+                                <img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/35e2c8cb31a4dd18380bc8de0cca3f4954ed8815.png" alt="" data-img-render="" style="width: auto; height: 100%;">
+                            </a>
+                        </div>
+                                    </div>
+                        </div>
+    <div class="page-load-status">
+        <p class="infinite-scroll-request">
+            <i class="ui active small inline loader" style="display: none;"></i>
+        </p>
+        <p class="infinite-scroll-last">没有更多内容</p>
+        <p class="infinite-scroll-error">加载失败，请刷新页面</p>
+    </div>
+    <a class="ui fluid button load-more-button">加载更多</a>
+                <p class="pagination" style="display: none;">
+            <a class="rel-pagination pagination__next" style="display: none" href="https://my.oschina.net/u/868789/blog/widgets/_blog_detail_list_rel?obj=1811984&amp;p=2&amp;type=ajax">下一页</a>
+        </p>
+                    </div>
+                <div class="ui basic segment tab article-list" data-tab="newArticleList" id="newArticleList">
+                                          
+
+    <div class="ui very relaxed items list-container blog-detail-list-container">
+                                                        <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/u/4406751/blog/4286840" target="_blank" title="拉格朗日对偶性">拉格朗日对偶性</a>
+                            <div class="description">
+                                <p class="line-clamp">　　在约束最优化问题中，常用拉格朗日对偶性将原始问题转换为对偶问题求解。 广义拉格朗日函数 　　称最优化问题 $\begin{equation} \begin{array}{lcl} \min\limits_{x\in R^n} f(x)\\ \be...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">osc_qo2uprmb</div>
+                                    <div class="item">7分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 11</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                            <div class="images">
+                                <a class="ui small image" href="https://my.oschina.net/u/4406751/blog/4286840" target="_blank" title="拉格朗日对偶性">
+                                    <img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/1908255-20200521202608080-1459828549.png" alt="" data-img-render="" style="width: 100%; height: auto;">
+                                </a>
+                            </div>
+                                            </div>
+                                                                                    <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/u/4275462/blog/4286839" target="_blank" title="假如腾讯阿里消失了，这个社会将变成什么样?">假如腾讯阿里消失了，这个社会将变成什么样?</a>
+                            <div class="description">
+                                <p class="line-clamp">平时常说腾讯阿里称霸中国互联网，主要是因为他们的服务覆盖了生活的大部分。 下面这俩应用大部分人手机都有 而且这两位还喜欢到处塞钱，哪里都有他们资本的影子。。。 其实这个现象现在大部...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">osc_b1kaj6np</div>
+                                    <div class="item">9分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 9</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                            <div class="images">
+                                <a class="ui small image" href="https://my.oschina.net/u/4275462/blog/4286839" target="_blank" title="假如腾讯阿里消失了，这个社会将变成什么样?">
+                                    <img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/20200521150906351.png" alt="" data-img-render="" style="width: 100%; height: auto;">
+                                </a>
+                            </div>
+                                            </div>
+                                                                                    <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/u/4334340/blog/4286838" target="_blank" title="众至大数据分析图表化Dashboard数据往来一目了然">众至大数据分析图表化Dashboard数据往来一目了然</a>
+                            <div class="description">
+                                <p class="line-clamp">众至下一代防火墙Dashboard以动态图标的方式，实时地反映网络的状态，包含实时联机数、应用程序分类、使用最多网络资源的用户、邮件和网页访问信息、HTTP及HTTPS流量跟防火墙的防护等信息，不...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">osc_nzvfn3cl</div>
+                                    <div class="item">10分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 7</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                            <div class="images">
+                                <a class="ui small image" href="https://my.oschina.net/u/4334340/blog/4286838" target="_blank" title="众至大数据分析图表化Dashboard数据往来一目了然">
+                                    <img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/4f14725e8559a3ebb7f71383fd8338c2.png" alt="" data-img-render="">
+                                </a>
+                            </div>
+                                            </div>
+                                                                                    <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/antsky/blog/4286837" target="_blank" title="JavaScript 中 undefined 与 null 的用法区别">JavaScript 中 undefined 与 null 的用法区别</a>
+                            <div class="description">
+                                <p class="line-clamp">大多数计算机语言，有且仅有一个表示“无”的值，比如：C 语言的 NULL，Java 语言的 null，Python 语言的 None，Ruby 语言的 nil。 但是在 JavaScript 中却同时存在 undefined 和 null，这主...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">whoru</div>
+                                    <div class="item">11分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 7</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                    </div>
+                                                                                    <div class="item blog-item">
+                        <div class="content">
+                            <a class="header" href="https://my.oschina.net/u/4406918/blog/4286836" target="_blank" title="Discourse 如何备份到 S3">Discourse 如何备份到 S3</a>
+                            <div class="description">
+                                <p class="line-clamp">Discourse 与 S3 是对好基友，如果你对 S3 比较熟悉的话，那么对你来说帮助会非常大。 很多人的虚拟主机空间是有限并且资源也是有限的。 使用 S3 进行备份能够更好的利用空间。 你可以按照下...</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui horizontal list">
+                                    <div class="item">osc_izh4pvr9</div>
+                                    <div class="item">12分钟前</div>
+
+                                    <div class="item"><i class="eye icon"></i> 5</div>
+                                    <div class="item"><i class="comment outline icon"></i> 0</div>
+                                                                    </div>
+                            </div>
+                        </div>
+                                                                            <div class="images">
+                                <a class="ui small image" href="https://my.oschina.net/u/4406918/blog/4286836" target="_blank" title="Discourse 如何备份到 S3">
+                                    <img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/de74c6fd26d278658887660f15eb207558438249.jpeg" alt="" data-img-render="" style="width: 100%; height: 100%; object-fit: fill;">
+                                </a>
+                            </div>
+                                            </div>
+                                        </div>
+    <div class="page-load-status">
+        <p class="infinite-scroll-request">
+            <i class="ui active small inline loader" style="display: none"></i>
+        </p>
+        <p class="infinite-scroll-last">没有更多内容</p>
+        <p class="infinite-scroll-error">加载失败，请刷新页面</p>
+    </div>
+    <a class="ui fluid button load-more-button">加载更多</a>
+                <p class="pagination">
+            <a class="news-pagination pagination__next" style="display: none" href="https://my.oschina.net/u/868789/blog/widgets/_blog_detail_list_news?p=2&amp;type=ajax">下一页</a>
+        </p>
+                    </div>
+            </div>
+        </div>
+        <div class="two wide computer only column">
+                                                    </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/blog" defer="defer"></script>
+<script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/space"></script>
+
+                        <div name="detail_show_footer" data-trace-id="detail_show" data-trace-ident="detail_show_footer">
+                <style>
+    .detail_banner_ad {
+        display: none;
+        position: fixed;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10001;
+        width: 100%;
+    }
+    .detail_banner_ad_bg {
+        position: relative;
+        height: 51px;
+        width: 1000px;
+        margin: 0 auto;
+        background: url("https://oscimg.oschina.net/oscnet/up-ac97452e2bb31206a61d87633d75c0b57c6.png") no-repeat center bottom;
+        background-size: 1000px auto;
+    }
+    .detail_banner_ad_close {
+        position: absolute;
+        right: 0px;
+        bottom: 30px;
+        width: 24px;
+        height: 24px;
+        margin: auto;
+        background: url("https://oscimg.oschina.net/oscnet/up-f1b7082d933dfc2ba0035a8cdbd23c7da12.png") no-repeat left;
+        background-size: 100%;
+        cursor: pointer;
+    }
+    @media only screen and (max-width: 767px) {
+        .detail_banner_ad {
+            display: none !important;
+        }
+        .detail_banner_ad_bg {
+            background-size: 100%;
+            width: 100%;
+        }
+        .detail_banner_ad_close{
+            bottom: 20px!important;
+            right: 5px!important;
+            width: 20px;
+            height: 20px;
+            background-size: 100%;
+        }
+    }
+</style>
+<div class="detail_banner_ad" style="display: block;">
+    <a href="https://www.oschina.net/news/115422/oschina-chrome-extension-v1.8-released?origin=dl" target="_blank">
+        <div class="detail_banner_ad_bg"><span class="detail_banner_ad_close"></span></div>
+    </a>
+</div>
+<!-- <script src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script> -->
+<script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/js.cookie.min.js.下載"></script>
+<script type="text/javascript">
+    (function () {
+        function loadScript(src, callback) {
+            var script = document.createElement('script'),
+                head = document.getElementsByTagName('head')[0];
+            script.type = 'text/javascript';
+            script.charset = 'UTF-8';
+            script.src = src;
+            if (script.addEventListener) {
+                script.addEventListener('load', function () {
+                    callback();
+                }, false);
+            } else if (script.attachEvent) {
+                script.attachEvent('onreadystatechange', function () {
+                    var target = window.event.srcElement;
+                    if (target.readyState == 'loaded') {
+                        callback();
+                    }
+                });
+            }
+            head.appendChild(script);
+        }
+        function loadAd() {
+            var leftPeople = $('.detail_banner_ad');
+            var cookieName = 'visit-detail-banner-ad-20200520';
+            var isVisit = Cookies.get(cookieName);
+            if (isVisit == 1) {
+                leftPeople.hide();
+            } else {
+                leftPeople.show();
+            }
+            $('.detail_banner_ad_close').on('click', function (e) {
+                e.preventDefault();
+                Cookies.set(cookieName, 1, {expires: 90, path: '/'});
+                leftPeople.slideUp();
+            })
+        };
+        if (window.innerWidth >= 768) {
+            if (window.jQuery) {
+                loadAd();
+            } else {
+                loadScript('https://www.oschina.net/public/bower_components/jquery/dist/jquery.min.js', function () {
+                    loadAd();
+                });
+            }
+        }
+    })();
+</script>
+
+            </div>
+            
+    <script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+         websocket = new WebSocket("wss://my.oschina.net/timing/timing//1811984/3");
+                //连接成功建立
+        websocket.onopen = function () {
+        };
+        //接收到消息
+        websocket.onmessage = function (event) {
+        };
+        //连接发生错误
+        websocket.onerror = function () {
+        };
+        //连接关闭
+        websocket.onclose = function () {
+        };
+        //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+        window.onbeforeunload = function () {
+        };
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+</script>
+
+            </div>
+        </div>
+
+                <div id="footer" class="ui vertical footer segment mb-hide">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="eight wide mobile four wide tablet four wide computer column">
+                <h4 class="ui header">OSCHINA 社区</h4>
+                <div class="ui link list">
+                    <a class="item" href="https://www.oschina.net/home/aboutosc" target="_blank">关于我们</a>
+                    <a class="item" href="https://www.oschina.net/home/aboutosc" target="_blank">联系我们</a>
+                    <a class="item" href="https://www.oschina.net/home/aboutosc#partners#" target="_blank">合作伙伴</a>
+                    <a class="item" href="https://www.oschina.net/openapi" target="_blank">Open API</a>
+                </div>
+            </div>
+            <div class="eight wide mobile four wide tablet four wide computer column">
+                <h4 class="ui header">在线工具</h4>
+                <div class="ui link list">
+                    <a class="item" href="https://gitee.com/?utm_source=oschina&amp;utm_medium=link-bottom&amp;utm_campaign=home" target="_blank">码云 Gitee.com</a>
+                    <a class="item" href="https://gitee.com/enterprises?utm_source=oschina&amp;utm_medium=link-bottom&amp;utm_campaign=enterprises" target="_blank">企业研发管理</a>
+                    <a class="item" href="https://copycat.gitee.com/?utm_source=oschina&amp;utm_medium=link-bottom&amp;utm_campaign=copycat" target="_blank">CopyCat-代码克隆检测</a>
+                    <a class="item" href="https://tool.oschina.net/" target="_blank">实用在线工具</a>
+                </div>
+            </div>
+            <div class="center aligned eight wide mobile two wide tablet two wide computer column">
+                <h4 class="ui header">微信公众号</h4>
+                <img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/wechat_qrcode.jpg" alt="微信公眾號">
+            </div>
+            <div class="center aligned eight wide mobile six wide tablet six wide computer column">
+                <h3 class="ui header">OSCHINA APP</h3>
+                <p>聚合全网技术文章，根据你的阅读喜好进行个性推荐</p>
+                <a href="https://www.oschina.net/app" target="_blank" class="ui large primary button">下载 APP</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="copyright">
+    <div class="ui container">
+        <div class="ui clearing basic segment">
+            <div class="ui left floated horizontal link list">
+                <div class="item">©OSCHINA(OSChina.NET)</div>
+                <div class="item mb-hide">工信部</div>
+                <a class="item mb-hide" href="http://www.copu.org.cn/" target="_blank" title="開源軟件推進聯盟"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">開源軟件推進聯盟</font></font></a>
+                <div class="item mb-hide"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">指定官方社區</font></font></div>
+            </div>
+            <div class="ui right floated horizontal link list">
+                <div class="item mb-hide"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">深圳市奧思網絡科技有限公司版權所有</font></font></div>
+                <a href="http://beian.miit.gov.cn/" target="_blank" class="item"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">粵ICP備12009483號</font></font></a>
+            </div>
+        </div>
+    </div>
+</div>    </div>
+                                                        <div class="back-to-top back-to-top-toggle" style="display: none;">
+        <div class="icon"><img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/back-to-top.svg" alt="返回顶部"></div>
+        <div class="text">顶部</div>
+    </div>
+
+        <script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/semantic.min.js.下載"></script>
+    <script src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/jweixin-1.2.0.js.下載"></script>
+                <script type="text/javascript" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/space.0172448e.js.下載"></script>                
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else{
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a411c4d1664dd70048ee98afe7b28f0b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+                
+
+    
+            
+
+<!-- Generated by oschina (init:1[ms],page:519[ms],ip:110.50.176.234) //--><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/ads(1).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-load-complete="true"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_351343834637" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/saved_resource(1).html"></iframe><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/translate_24dp.png" width="20" height="20" alt="Google 翻譯"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">建議更好的譯法</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="ui dimmer modals page"><div class="ui mini delete-comment modal">
+    <div class="header">删除一条评论</div>
+    <div class="content">
+        <p>评论删除后，数据将无法恢复</p>
+    </div>
+    <div class="actions">
+        <div class="ui positive button">取消</div>
+        <div class="ui negative button">确定</div>
+    </div>
+</div></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body><iframe id="google_esf" name="google_esf" src="./C#使用Sqlite.dll問題記錄- 藍瞳的個人空間- OSCHINA_files/zrt_lookup.html" data-ad-client="ca-pub-7090564139599510" style="display: none;"></iframe></html>

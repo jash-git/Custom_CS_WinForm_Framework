@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FEC2CDAF-158F-473E-BBE1-9B4090EC17DC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SetCPUCardParameter</RootNamespace>
+    <AssemblyName>SetCPUCardParameter</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>syws.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SQLite.NET, Version=0.21.1869.3794, Culture=neutral, PublicKeyToken=c273bd375e695f9c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\SQLite.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lib\Language.cs" />
+    <Compile Include="Lib\Settings.cs" />
+    <Compile Include="Lib\SQLite.cs" />
+    <Compile Include="Lib\SyrisAES.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InitUI\InitMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\BorderGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\ckbtext.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\ckbtext.Designer.cs" />
+    <Compile Include="UI_Lib\ColorCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\ColorRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\ComboBoxTreeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\DraggableTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\editpassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\editpassword.Designer.cs" />
+    <Compile Include="UI_Lib\Grp_ckbtext.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\Grp_ckbtext.Designer.cs" />
+    <Compile Include="UI_Lib\JLButton.cs" />
+    <Compile Include="UI_Lib\JLLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\JLNumEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\JLNumEdit01.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\LineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\PromptTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\RadioListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\RoundPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\SetTimeEnable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\SetTimeEnable.Designer.cs" />
+    <Compile Include="UI_Lib\SetTimeEnable2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\SetTimeEnable2.Designer.cs" />
+    <Compile Include="UI_Lib\SetTimeEnable3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\SetTimeEnable3.Designer.cs" />
+    <Compile Include="UI_Lib\TooltipToolV2.cs" />
+    <Compile Include="UI_Lib\TreeViewMS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI_Lib\Tree_Node.cs" />
+    <Compile Include="UI_Lib\TriStateCheckBoxTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI_Lib\ckbtext.resx" />
+    <EmbeddedResource Include="UI_Lib\editpassword.resx" />
+    <EmbeddedResource Include="UI_Lib\Grp_ckbtext.resx" />
+    <EmbeddedResource Include="UI_Lib\SetTimeEnable.resx" />
+    <EmbeddedResource Include="UI_Lib\SetTimeEnable2.resx" />
+    <EmbeddedResource Include="UI_Lib\SetTimeEnable3.resx" />
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SQLite.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite.NET.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="syws.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
